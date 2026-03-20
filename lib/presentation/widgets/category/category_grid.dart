@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../../../domain/entities/category/category_entity.dart';
 import 'category_card.dart';
+import 'category_data.dart';
 
 class CategoryGrid extends StatelessWidget {
   const CategoryGrid({super.key, required this.categories});
@@ -23,10 +26,12 @@ class CategoryGrid extends StatelessWidget {
         final category = categories[index];
         return CategoryCard(
           category: category,
+          icon: CategoryData.iconFor(category.name),
           onTap: () {
-            // For template: print category name only.
-            // ignore: avoid_print
-            print('Category tapped: ${category.name}');
+            Get.toNamed(
+              AppRoutes.productList,
+              arguments: category,
+            );
           },
         );
       },

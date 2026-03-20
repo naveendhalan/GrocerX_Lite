@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../domain/entities/category/category_entity.dart';
 import '../../../domain/entities/product/product_entity.dart';
 
 /// Product controller for Product module UI.
@@ -8,11 +9,17 @@ class ProductController extends GetxController {
   final RxList<ProductEntity> products = <ProductEntity>[].obs;
   final RxString errorMessage = ''.obs;
 
+  /// Title to show in the Product listing AppBar.
+  final RxString pageTitle = 'Products'.obs;
+
   /// Currently selected sort label (e.g. "Relevance", "Price: Low to High").
   final RxString selectedSort = 'Relevance'.obs;
 
   /// Currently selected category filter.
   final RxString selectedCategory = 'All'.obs;
+
+  /// When navigating from a category, we keep the raw category id so we can match by id too.
+  String? _requestedCategoryId;
 
   /// Filtered list of products to be rendered in the grid.
   final RxList<ProductEntity> filteredProductList = <ProductEntity>[].obs;
@@ -26,9 +33,18 @@ class ProductController extends GetxController {
   /// Internal mapping from product id to category label (for demo filters).
   final Map<String, String> _productCategory = <String, String>{};
 
+  /// Internal mapping from product id to category id (for demo filters).
+  final Map<String, String> _productCategoryId = <String, String>{};
+
   @override
   void onInit() {
     super.onInit();
+    final Object? args = Get.arguments;
+    if (args is CategoryEntity) {
+      _requestedCategoryId = args.id;
+      selectedCategory.value = args.name;
+      pageTitle.value = args.name;
+    }
     _loadDemoProducts();
   }
 
@@ -45,6 +61,19 @@ class ProductController extends GetxController {
     _productCategory
       ..clear()
       ..addAll(<String, String>{'p1': 'Vegetables', 'p2': 'Vegetables', 'p3': 'Vegetables', 'p4': 'Leafy Greens', 'p5': 'Vegetables'});
+
+    // Map demo products to category ids (best-effort for template filtering).
+    // This is aligned with the category ids used in CategoryData (c1..c6).
+    _productCategoryId
+      ..clear()
+      ..addAll(<String, String>{
+        'p1': 'c2',
+        'p2': 'c2',
+        'p3': 'c2',
+        // The demo product controller uses a special label for spinach; we map it to Vegetables id.
+        'p4': 'c2',
+        'p5': 'c2',
+      });
 
     products.assignAll(demoProducts);
 
@@ -75,6 +104,9 @@ class ProductController extends GetxController {
       return;
     }
 
+    // User-driven filter changes should not keep using the originally requested category id.
+    _requestedCategoryId = null;
+
     final int currentIndex = uniqueCategories.indexOf(selectedCategory.value);
     final int nextIndex = currentIndex == -1 ? 0 : (currentIndex + 1) % uniqueCategories.length;
 
@@ -86,9 +118,13 @@ class ProductController extends GetxController {
     List<ProductEntity> list = List<ProductEntity>.from(products);
 
     // Category filter
-    final String category = selectedCategory.value;
-    if (category != 'All' && category.isNotEmpty) {
-      list = list.where((ProductEntity p) => _productCategory[p.id] == category).toList();
+    final String categoryName = selectedCategory.value;
+    if (categoryName != 'All' && categoryName.isNotEmpty) {
+      list = list.where((ProductEntity p) {
+        final bool matchesName = _productCategory[p.id] == categoryName;
+        final bool matchesId = _requestedCategoryId != null ? _productCategoryId[p.id] == _requestedCategoryId : false;
+        return matchesName || matchesId;
+      }).toList();
     }
 
     // Sort filter

@@ -4,7 +4,6 @@ import 'package:grocerx_lite/presentation/controllers/notification/notification_
 
 import '../../../config/routes/app_routes.dart';
 import '../../../domain/entities/address_entity.dart';
-import '../../../domain/entities/category/category_entity.dart';
 import '../../../domain/entities/product/product_entity.dart';
 import '../../controllers/cart/cart_binding.dart';
 import '../../controllers/cart/cart_controller.dart';
@@ -14,6 +13,7 @@ import '../../controllers/notification/notification_controller.dart';
 import '../../controllers/wishlist/wishlist_binding.dart';
 import '../../controllers/wishlist/wishlist_controller.dart';
 import '../../widgets/category/category_card.dart';
+import '../../widgets/category/category_data.dart';
 import '../../widgets/product/product_card.dart';
 import '../../widgets/home/skeletons/banner_skeleton.dart';
 import '../../widgets/home/skeletons/category_skeleton.dart';
@@ -35,36 +35,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // Reset to home when page is initialized
     _selectedIndex = 0;
-  }
-
-  // Static dummy data for categories
-  List<CategoryEntity> get _categories => [
-    const CategoryEntity(id: 'c1', name: 'Fruits', image: 'assets/images/fruits.png', description: 'Fresh and seasonal fruits'),
-    const CategoryEntity(id: 'c2', name: 'Vegetables', image: 'assets/images/veg.png', description: 'Daily vegetables'),
-    const CategoryEntity(id: 'c3', name: 'Dairy', image: 'assets/images/dairy.png', description: 'Milk and dairy products'),
-    const CategoryEntity(id: 'c4', name: 'Snacks', image: 'assets/images/snacks.png', description: 'Crunchy snacks'),
-    const CategoryEntity(id: 'c5', name: 'Bakery', image: 'assets/images/bakery.png', description: 'Bread and cakes'),
-    const CategoryEntity(id: 'c6', name: 'Beverages', image: 'assets/images/beverages.png', description: 'Juices and drinks'),
-  ];
-
-  // Icon mapping for categories
-  IconData _getCategoryIcon(String categoryName) {
-    switch (categoryName.toLowerCase()) {
-      case 'fruits':
-        return Icons.apple;
-      case 'vegetables':
-        return Icons.eco;
-      case 'dairy':
-        return Icons.local_drink;
-      case 'snacks':
-        return Icons.cookie;
-      case 'bakery':
-        return Icons.bakery_dining;
-      case 'beverages':
-        return Icons.local_bar;
-      default:
-        return Icons.category;
-    }
   }
 
   // Static dummy data for best selling products
@@ -381,17 +351,20 @@ class _HomePageState extends State<HomePage> {
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: _categories.length,
+                      itemCount: CategoryData.categories.length,
                       itemBuilder: (context, index) {
-                        final category = _categories[index];
+                        final category = CategoryData.categories[index];
                         return Padding(
                           padding: const EdgeInsets.only(right: 12),
                           child: SizedBox(
                             width: 90,
                             child: CategoryCard(
                               category: category,
-                              icon: _getCategoryIcon(category.name),
-                              onTap: () => Get.toNamed(AppRoutes.category),
+                              icon: CategoryData.iconFor(category.name),
+                              onTap: () => Get.toNamed(
+                                AppRoutes.productList,
+                                arguments: category,
+                              ),
                             ),
                           ),
                         );

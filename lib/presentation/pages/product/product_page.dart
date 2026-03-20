@@ -29,6 +29,12 @@ class ProductPage extends GetView<ProductController> {
       appBar: AppBar(
         backgroundColor: theme.colorScheme.surface,
         elevation: 0,
+        title: Obx(
+          () => Text(
+            controller.pageTitle.value,
+            style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+          ),
+        ),
         actions: [
           Obx(() {
             final cartController = Get.find<CartController>();

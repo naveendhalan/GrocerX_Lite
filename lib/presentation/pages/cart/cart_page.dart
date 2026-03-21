@@ -17,52 +17,38 @@ class CartPage extends GetView<CartController> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: GrocerAppBar(
-        title: Obx(
-          () => Text(
-            'Cart (${controller.totalItems})',
-            style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
-          ),
+        title: Text(
+          'Cart (${controller.totalItems})',
+          style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
         ),
       ),
       body: SafeArea(
-        child: Obx(
-          () => controller.cartItems.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.shopping_cart_outlined, size: 80, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
-                      const SizedBox(height: 16),
-                      Text('Your cart is empty', style: theme.textTheme.titleLarge?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
-                      const SizedBox(height: 8),
-                      Text('Add items to your cart to continue', style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5))),
-                    ],
-                  ),
-                )
-              : Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        padding: const EdgeInsets.all(16),
-                        itemCount: controller.cartItems.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: CartItemCard(cartItem: controller.cartItems[index]),
-                          );
-                        },
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surface,
-                        boxShadow: [BoxShadow(color: Colors.black12.withValues(alpha: 0.08), blurRadius: 18, spreadRadius: 2, offset: const Offset(0, -8))],
-                      ),
-                      child: Column(children: [const CartTotalCard(), const SizedBox(height: 16), const CheckoutButton()]),
-                    ),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: controller.cartItems.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: CartItemCard(cartItem: controller.cartItems[index]),
+                  );
+                },
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface,
+                boxShadow: [BoxShadow(color: Colors.black12.withValues(alpha: 0.08), blurRadius: 18, spreadRadius: 2, offset: const Offset(0, -8))],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [CartTotalCard(), SizedBox(height: 16), CheckoutButton()],
+              ),
+            ),
+          ],
         ),
       ),
     );

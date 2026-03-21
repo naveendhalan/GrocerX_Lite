@@ -13,7 +13,7 @@ class CartController extends GetxController {
   }
 
   void _loadDemoData() {
-    // Demo cart items
+    // Static Lite demo cart items for screenshots.
     cartItems.assignAll([
       CartItemEntity(
         id: '1',
@@ -44,9 +44,8 @@ class CartController extends GetxController {
     ]);
   }
 
-  double get subtotal {
-    return cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
-  }
+  // Fixed summary values keep Lite UI deterministic.
+  double get subtotal => 260.0;
 
   double get deliveryFee => 5.0;
 
@@ -54,69 +53,5 @@ class CartController extends GetxController {
 
   int get totalItems {
     return cartItems.fold(0, (sum, item) => sum + item.quantity);
-  }
-
-  void addItem(ProductEntity product) {
-    final existingItemIndex = cartItems.indexWhere(
-      (item) => item.product.id == product.id,
-    );
-
-    if (existingItemIndex != -1) {
-      final existingItem = cartItems[existingItemIndex];
-      cartItems[existingItemIndex] = CartItemEntity(
-        id: existingItem.id,
-        product: existingItem.product,
-        quantity: existingItem.quantity + 1,
-      );
-    } else {
-      cartItems.add(
-        CartItemEntity(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
-          product: product,
-          quantity: 1,
-        ),
-      );
-    }
-  }
-
-  void removeItem(String itemId) {
-    cartItems.removeWhere((item) => item.id == itemId);
-  }
-
-  void updateQuantity(String itemId, int newQuantity) {
-    if (newQuantity <= 0) {
-      removeItem(itemId);
-      return;
-    }
-
-    final index = cartItems.indexWhere((item) => item.id == itemId);
-    if (index != -1) {
-      final item = cartItems[index];
-      cartItems[index] = CartItemEntity(
-        id: item.id,
-        product: item.product,
-        quantity: newQuantity,
-      );
-    }
-  }
-
-  void incrementQuantity(String itemId) {
-    final index = cartItems.indexWhere((item) => item.id == itemId);
-    if (index != -1) {
-      final item = cartItems[index];
-      updateQuantity(itemId, item.quantity + 1);
-    }
-  }
-
-  void decrementQuantity(String itemId) {
-    final index = cartItems.indexWhere((item) => item.id == itemId);
-    if (index != -1) {
-      final item = cartItems[index];
-      updateQuantity(itemId, item.quantity - 1);
-    }
-  }
-
-  void clearCart() {
-    cartItems.clear();
   }
 }

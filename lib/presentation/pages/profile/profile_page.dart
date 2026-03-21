@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../config/routes/app_routes.dart';
 import '../../controllers/profile/profile_controller.dart';
 import '../../widgets/common/grocer_app_bar.dart';
+import '../../widgets/common/pro_upgrade_dialog.dart';
 import '../../widgets/profile/profile_button.dart';
 import '../../widgets/profile/profile_card.dart';
 
@@ -30,9 +30,33 @@ class ProfilePage extends GetView<ProfileController> {
             children: [
               const ProfileCard(),
               const SizedBox(height: 24),
-              ProfileButton(icon: Icons.edit, title: 'Edit Profile', subtitle: 'Update your personal information', onTap: () => Get.toNamed(AppRoutes.editProfile)),
+              ProfileButton(
+                icon: Icons.receipt_long,
+                title: 'My Orders',
+                subtitle: 'Track and review your purchases',
+                onTap: () => ProUpgradeDialog.show(featureName: 'Order History'),
+              ),
               const SizedBox(height: 12),
-              Obx(() => ProfileButton(icon: Icons.location_on, title: 'Manage Addresses', subtitle: '${controller.addresses.length} addresses', onTap: () => Get.toNamed(AppRoutes.address))),
+              ProfileButton(
+                icon: Icons.location_on,
+                title: 'Shipping Addresses',
+                subtitle: 'Manage delivery locations',
+                onTap: () => ProUpgradeDialog.show(featureName: 'Shipping Addresses'),
+              ),
+              const SizedBox(height: 12),
+              ProfileButton(
+                icon: Icons.credit_card,
+                title: 'Payment Methods',
+                subtitle: 'Saved cards and wallets',
+                onTap: () => ProUpgradeDialog.show(featureName: 'Payment Methods'),
+              ),
+              const SizedBox(height: 12),
+              ProfileButton(
+                icon: Icons.edit,
+                title: 'Edit Profile',
+                subtitle: 'Update your personal information',
+                onTap: () => ProUpgradeDialog.show(featureName: 'Edit Profile'),
+              ),
               const SizedBox(height: 24),
               SizedBox(
                 width: double.infinity,

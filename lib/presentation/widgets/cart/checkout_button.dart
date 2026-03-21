@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../config/routes/app_routes.dart';
 import '../../controllers/cart/cart_controller.dart';
+import '../common/pro_upgrade_dialog.dart';
 
 class CheckoutButton extends StatelessWidget {
   const CheckoutButton({super.key});
@@ -16,7 +16,7 @@ class CheckoutButton extends StatelessWidget {
       () => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: controller.cartItems.isEmpty ? null : () => Get.toNamed(AppRoutes.checkout),
+          onPressed: controller.cartItems.isEmpty ? null : () => ProUpgradeDialog.show(featureName: 'Checkout'),
           style: ElevatedButton.styleFrom(
             backgroundColor: theme.colorScheme.primary,
             foregroundColor: theme.colorScheme.onPrimary,

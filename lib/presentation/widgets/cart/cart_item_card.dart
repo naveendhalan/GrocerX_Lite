@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../domain/entities/cart_item_entity.dart';
-import '../../controllers/cart/cart_controller.dart';
 
 class CartItemCard extends StatelessWidget {
   const CartItemCard({super.key, required this.cartItem});
@@ -12,7 +10,6 @@ class CartItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final controller = Get.find<CartController>();
 
     return Container(
       decoration: BoxDecoration(
@@ -69,39 +66,12 @@ class CartItemCard extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: theme.colorScheme.outline.withValues(alpha: 0.3)),
-                        borderRadius: BorderRadius.circular(8),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(color: theme.colorScheme.surfaceContainerHighest, borderRadius: BorderRadius.circular(8)),
+                      child: Text(
+                        'Qty: ${cartItem.quantity}',
+                        style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600, color: theme.colorScheme.onSurface),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.remove, size: 18, color: theme.colorScheme.onSurface),
-                            onPressed: () => controller.decrementQuantity(cartItem.id),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                          ),
-                          Obx(() {
-                            final item = controller.cartItems.firstWhere((item) => item.id == cartItem.id, orElse: () => cartItem);
-                            return Text(
-                              '${item.quantity}',
-                              style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600, color: theme.colorScheme.onSurface),
-                            );
-                          }),
-                          IconButton(
-                            icon: Icon(Icons.add, size: 18, color: theme.colorScheme.onSurface),
-                            onPressed: () => controller.incrementQuantity(cartItem.id),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      icon: Icon(Icons.delete_outline, color: theme.colorScheme.error),
-                      onPressed: () => controller.removeItem(cartItem.id),
                     ),
                   ],
                 ),

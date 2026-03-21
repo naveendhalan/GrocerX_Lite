@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/product_detail_controller.dart';
-import '../../controllers/wishlist/wishlist_binding.dart';
-import '../../controllers/wishlist/wishlist_controller.dart';
 
 class ProductDetailHeader extends GetView<ProductDetailController> {
   const ProductDetailHeader({super.key});
@@ -12,15 +10,8 @@ class ProductDetailHeader extends GetView<ProductDetailController> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    // Ensure wishlist controller is available
-    if (!Get.isRegistered<WishlistController>()) {
-      WishlistBinding().dependencies();
-    }
-
     return Obx(() {
-      final wishlistController = Get.find<WishlistController>();
       final product = controller.currentProduct;
-      final isFavorite = wishlistController.isInWishlist(product);
 
       return Row(
         children: <Widget>[
@@ -33,8 +24,18 @@ class ProductDetailHeader extends GetView<ProductDetailController> {
             ),
           ),
           IconButton(
-            icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border, color: isFavorite ? theme.colorScheme.error : theme.colorScheme.onSurface.withValues(alpha: 0.6)),
-            onPressed: () => wishlistController.toggleWishlist(product),
+            icon: Icon(Icons.favorite_border, color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
+            onPressed: () {
+              Get.snackbar(
+                'Wishlist',
+                '${product.name} added to Wishlist (Lite Version)',
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: theme.colorScheme.primaryContainer,
+                colorText: theme.colorScheme.onPrimaryContainer,
+                margin: const EdgeInsets.all(16),
+                borderRadius: 12,
+              );
+            },
           ),
           IconButton(
             icon: Icon(Icons.share_outlined, color: theme.colorScheme.onSurface),

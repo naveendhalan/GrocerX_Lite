@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import 'package:grocerx_lite/presentation/controllers/notification/notification_binding.dart';
 
 import '../../../config/routes/app_routes.dart';
-import '../../../domain/entities/address_entity.dart';
 import '../../../domain/entities/product/product_entity.dart';
 import '../../controllers/cart/cart_binding.dart';
 import '../../controllers/cart/cart_controller.dart';
-import '../../controllers/checkout/checkout_controller.dart';
 import '../../controllers/home/home_controller.dart';
 import '../../controllers/notification/notification_controller.dart';
 import '../../controllers/wishlist/wishlist_binding.dart';
@@ -20,6 +18,7 @@ import '../../widgets/home/skeletons/category_skeleton.dart';
 import '../../widgets/home/skeletons/home_search_skeleton.dart';
 import '../../widgets/home/skeletons/product_grid_skeleton.dart';
 import '../../widgets/common/grocer_app_bar.dart';
+import '../../widgets/common/pro_upgrade_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -78,17 +77,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future<void> _navigateToAddressSelection() async {
-    // Ensure CheckoutController is available
-    if (!Get.isRegistered<CheckoutController>()) {
-      return;
-    }
-    
-    final AddressEntity address = await Get.toNamed(AppRoutes.address, arguments: "Home");
-    final checkoutController = Get.find<CheckoutController>();
-    checkoutController.selectAddress(address);
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -120,60 +108,29 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         title: InkWell(
-          onTap: _navigateToAddressSelection,
-          child: Obx(() {
-            if (!Get.isRegistered<CheckoutController>()) {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: Text(
-                      'Select Address',
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: theme.colorScheme.onSurface,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+          onTap: () => ProUpgradeDialog.show(featureName: 'Address Selection'),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Text(
+                  'Select Address',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onSurface,
                   ),
-                  const SizedBox(width: 4),
-                  Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 20,
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                  ),
-                ],
-              );
-            }
-            
-            final checkoutController = Get.find<CheckoutController>();
-            final selectedAddress = checkoutController.selectedAddress.value;
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: Text(
-                    selectedAddress != null 
-                        ? selectedAddress.fullAddress
-                        : 'Select Address',
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: theme.colorScheme.onSurface,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(width: 4),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  size: 20,
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                ),
-              ],
-            );
-          }),
+              ),
+              const SizedBox(width: 4),
+              Icon(
+                Icons.keyboard_arrow_down,
+                size: 20,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+            ],
+          ),
         ),
         elevation: 0,
         actions: [
@@ -292,7 +249,7 @@ class _HomePageState extends State<HomePage> {
               title: Text('Orders', style: TextStyle(color: theme.colorScheme.onSurface)),
               onTap: () {
                 Navigator.pop(context);
-                Get.toNamed(AppRoutes.orders);
+                ProUpgradeDialog.show(featureName: 'Order History');
               },
             ),
           ],

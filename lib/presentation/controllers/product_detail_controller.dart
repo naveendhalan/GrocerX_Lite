@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocerx_lite/presentation/controllers/cart/cart_binding.dart';
-import 'package:grocerx_lite/presentation/controllers/cart/cart_controller.dart';
 
 import '../../domain/entities/product/product_entity.dart';
 
@@ -91,24 +89,10 @@ class ProductDetailController extends GetxController {
 
   void addToCart() {
     if (!inStock.value) return;
-
-    // Ensure cart controller is available
-    if (!Get.isRegistered<CartController>()) {
-      CartBinding().dependencies();
-    }
-
-    final cartController = Get.find<CartController>();
     final product = currentProduct;
-
-    // Add product to cart with selected quantity
-    for (int i = 0; i < quantity.value; i++) {
-      cartController.addItem(product);
-    }
-
-    // Show success message
     Get.snackbar(
       'Added to Cart',
-      '${quantity.value} x ${product.name} added to cart',
+      '${product.name} added to Cart (Lite Version)',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Get.theme.colorScheme.primaryContainer,
       colorText: Get.theme.colorScheme.onPrimaryContainer,

@@ -6,10 +6,6 @@ import '../../../domain/repositories/home/home_repository.dart';
 import '../../../domain/usecases/home/get_home_data.dart';
 import '../cart/cart_binding.dart';
 import '../cart/cart_controller.dart';
-import '../checkout/checkout_binding.dart';
-import '../checkout/checkout_controller.dart';
-import '../profile/profile_binding.dart';
-import '../profile/profile_controller.dart';
 import 'home_controller.dart';
 
 class HomeBinding extends Bindings {
@@ -36,19 +32,9 @@ class HomeBinding extends Bindings {
       fenix: true,
     );
     
-    // Ensure cart controller is available (required by CheckoutController)
+    // Ensure cart controller is available globally.
     if (!Get.isRegistered<CartController>()) {
       CartBinding().dependencies();
-    }
-    
-    // Ensure profile controller is available for address management
-    if (!Get.isRegistered<ProfileController>()) {
-      ProfileBinding().dependencies();
-    }
-    
-    // Initialize CheckoutController early so Home can use selectedAddress
-    if (!Get.isRegistered<CheckoutController>()) {
-      CheckoutBinding().dependencies();
     }
   }
 }

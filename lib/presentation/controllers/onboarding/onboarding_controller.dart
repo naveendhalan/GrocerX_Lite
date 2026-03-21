@@ -21,7 +21,7 @@ class OnboardingController extends GetxController {
   }
 
   void skip() {
-    Get.offNamed(AppRoutes.login);
+    Get.offAllNamed(AppRoutes.home);
   }
 
   bool get isLastPage => currentPage.value == totalPages - 1;

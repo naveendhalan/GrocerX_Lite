@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 import '../../config/routes/app_routes.dart';
-import '../../presentation/controllers/auth/auth_binding.dart';
 import '../../presentation/controllers/cart/cart_binding.dart';
 import '../../presentation/controllers/category/category_binding.dart';
 import '../../presentation/controllers/home/home_binding.dart';
@@ -12,9 +11,6 @@ import '../../presentation/controllers/profile/profile_binding.dart';
 import '../../presentation/controllers/review/review_binding.dart';
 import '../../presentation/controllers/search/search_binding.dart';
 import '../../presentation/controllers/wishlist/wishlist_binding.dart';
-import '../../presentation/pages/auth/forgot_password_page.dart';
-import '../../presentation/pages/auth/login_page.dart';
-import '../../presentation/pages/auth/otp_page.dart';
 import '../../presentation/pages/cart/cart_page.dart';
 import '../../presentation/pages/category/category_page.dart';
 import '../../presentation/pages/home/home_page.dart';
@@ -33,9 +29,6 @@ class AppRouter {
   static List<GetPage> getPages = [
     GetPage(name: AppRoutes.splash, page: () => const SplashPage()),
     GetPage(name: AppRoutes.onboarding, page: () => const OnboardingPage(), binding: OnboardingBinding()),
-    GetPage(name: AppRoutes.login, page: () => const LoginPage(), binding: AuthBinding()),
-    GetPage(name: AppRoutes.otp, page: () => const OtpPage(), binding: AuthBinding()),
-    GetPage(name: AppRoutes.forgotPassword, page: () => const ForgotPasswordPage(), binding: AuthBinding()),
     GetPage(name: AppRoutes.home, page: () => const HomePage(), binding: HomeBinding()),
     GetPage(name: AppRoutes.profile, page: () => const ProfilePage(), binding: ProfileBinding()),
     GetPage(name: AppRoutes.cart, page: () => const CartPage(), binding: CartBinding()),

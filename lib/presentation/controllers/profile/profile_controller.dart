@@ -9,6 +9,6 @@ class ProfileController extends GetxController {
   final RxString profileImage = ''.obs;
 
   void logout() {
-    Get.offAllNamed(AppRoutes.login);
+    Get.offAllNamed(AppRoutes.home);
   }
 }

@@ -36,9 +36,9 @@ Love the UI? Save **40+ hours** of development time by upgrading to the **Premiu
 ## 📸 Preview
 
 <p align="center">
-  <img src="home.jpg" width="30%" alt="Home Screen" />
-  <img src="cart.jpg" width="30%" alt="Cart Screen" />
-  <img src="product.jpg" width="30%" alt="Product Details" />
+  <img src="screenshots/home.png" width="30%" alt="Home Screen" />
+  <img src="screenshots/cart.png" width="30%" alt="Cart Screen" />
+  <img src="screenshots/product.png" width="30%" alt="Product Details" />
 </p>
 
 *(Note: Ensure home.jpg, cart.jpg, and product.jpg are in your repository root.)*

@@ -40,9 +40,6 @@ Love the UI? Save **40+ hours** of development time by upgrading to the **Premiu
   <img src="screenshots/cart.png" width="30%" alt="Cart Screen" />
   <img src="screenshots/product.png" width="30%" alt="Product Details" />
 </p>
-
-*(Note: Ensure home.jpg, cart.jpg, and product.jpg are in your repository root.)*
-
 ---
 
 ## 🛠 Tech Stack

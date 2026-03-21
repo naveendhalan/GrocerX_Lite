@@ -1,34 +1,62 @@
-# GrocerX - Flutter Grocery UI Template (Lite Version)
+# GrocerX Lite 🛒
 
-<div align="center">
-  <img src="screenshots/onboarding.png" width="250"/>
-  <img src="screenshots/home.png" width="250"/>
-</div>
+A pixel-perfect, modern Grocery E-commerce UI kit built with Flutter. This "Lite" version provides a high-quality frontend foundation for your next shopping application, showcasing clean UI and professional folder structure.
 
-Welcome to the **GrocerX Lite** repository! This is a clean, modern, and highly responsive Flutter UI template designed for grocery delivery and e-commerce apps. 
+---
 
-I built this to help developers skip the wireframing and tedious UI debugging. It features a custom-illustrated onboarding flow and a flawless codebase (0 warnings, perfect `flutter analyze` score).
+## 🚀 Upgrade to GrocerX Premium (Full Source Code)
 
-## 🚀 Get the PRO Version (Complete App Template)
-Loved the clean UI and want the fully functional template? The **Pro Version** saves you dozens of hours of development time by including full state management, cart logic, and backend-ready models.
+Love the UI? Save **40+ hours** of development time by upgrading to the **Premium Version**. While this Lite version provides the static UI, the Premium version includes the complete, functional architecture you need to launch a real-world app.
 
-| Feature | GrocerX Lite (Free) | GrocerX PRO (Premium) |
+### 💎 Why Upgrade to Premium?
+* **Fully Reactive State:** Complete business logic built with **GetX** for Cart, Checkout, and Auth flows.
+* **Clean Architecture:** Production-ready layered structure (Domain, Data, & Presentation).
+* **0 Analyzer Issues:** 100% Null Safe, 0 Lint Errors, 0 Warnings—pure professional code.
+* **Functional Logic:** Dynamic cart calculations, Category filtering, and Auth routing.
+
+🔥 **[GET THE PREMIUM SOURCE CODE ON GUMROAD](https://naveendhalan.gumroad.com/l/GrocerX)**
+
+---
+
+## ✨ Features Comparison
+
+| Feature | GrocerX Lite (Free) | GrocerX Premium ($29) |
 | :--- | :---: | :---: |
-| Clean UI & Flawless Code | ✅ | ✅ |
-| Custom Onboarding Screens | ✅ | ✅ |
-| Home Screen Layout | ✅ | ✅ |
-| **Shopping Cart Logic & State** | ❌ | ✅ |
-| **Checkout & Payment Flow UI** | ❌ | ✅ |
-| **Auth Screens (Login/Signup)** | ❌ | ✅ |
-| **User Profile & Order History** | ❌ | ✅ |
-| **Premium Support** | ❌ | ✅ |
+| 20+ Premium Screens | ✅ | ✅ |
+| Custom App Logo & Icons | ✅ | ✅ |
+| Pixel-Perfect UI | ✅ | ✅ |
+| **GetX State Management** | ❌ | ✅ |
+| **Functional Shopping Cart** | ❌ | ✅ |
+| **Complete Checkout Flow** | ❌ | ✅ |
+| **Auth Logic (Login/OTP/Signup)** | ❌ | ✅ |
+| **Clean Architecture Setup** | ❌ | ✅ |
 
-🔥 **[Click Here to Get GrocerX PRO on Gumroad]** 🔥
+---
 
-## 🛠 Getting Started with Lite
-1. Clone the repository: `git clone https://github.com/yourusername/GrocerX-Lite.git`
-2. Run `flutter pub get`
-3. Run the app on your preferred emulator or device.
+## 📸 Preview
 
-## 📄 License
-This Lite version is open-sourced under the MIT License. You are free to use it for personal projects. For commercial use and full features, please upgrade to the Pro version.
+<p align="center">
+  <img src="home.jpg" width="30%" alt="Home Screen" />
+  <img src="cart.jpg" width="30%" alt="Cart Screen" />
+  <img src="product.jpg" width="30%" alt="Product Details" />
+</p>
+
+*(Note: Ensure home.jpg, cart.jpg, and product.jpg are in your repository root.)*
+
+---
+
+## 🛠 Tech Stack
+* **Framework:** Flutter (Latest Stable)
+* **State Management:** GetX (Premium Only)
+* **Architecture:** Clean Architecture (Premium Only)
+* **Linting:** Flutter Lints (Zero Warnings)
+
+---
+
+## 📄 Usage
+The **Lite version** is intended for educational purposes and UI exploration. 
+
+By purchasing the **[Premium Version](https://naveendhalan.gumroad.com/l/GrocerX)**, you gain full access to the source code, including all business logic and architecture, which you can use to build and launch your own commercial applications or client projects.
+
+---
+Built with ❤️ by [Naveen Dhalan](https://github.com/Naveendhalan)

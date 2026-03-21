@@ -5,6 +5,7 @@ import '../../../config/routes/app_routes.dart';
 import '../../../domain/entities/order_entity.dart';
 import '../../controllers/orders/orders_controller.dart';
 import '../../widgets/orders/order_item_tile.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class OrderDetailPage extends GetView<OrdersController> {
   const OrderDetailPage({super.key});
@@ -21,7 +22,7 @@ class OrderDetailPage extends GetView<OrdersController> {
         }
         final order = snap.data!;
         return Scaffold(
-          appBar: AppBar(title: Text('Order ${order.id}')),
+          appBar: GrocerAppBar(title: Text('Order ${order.id}')),
           body: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(

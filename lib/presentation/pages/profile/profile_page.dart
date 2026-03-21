@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../config/routes/app_routes.dart';
 import '../../controllers/profile/profile_controller.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 import '../../widgets/profile/profile_button.dart';
 import '../../widgets/profile/profile_card.dart';
 
@@ -15,13 +16,11 @@ class ProfilePage extends GetView<ProfileController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Text(
           'Profile',
           style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

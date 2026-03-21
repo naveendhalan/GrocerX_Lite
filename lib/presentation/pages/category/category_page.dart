@@ -3,15 +3,20 @@ import 'package:get/get.dart';
 
 import '../../controllers/category/category_controller.dart';
 import '../../widgets/category/category_grid.dart';
-import '../../widgets/category/category_header.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class CategoryPage extends GetView<CategoryController> {
   const CategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.colorScheme.surface,
+      appBar: GrocerAppBar(title: Text(
+        'Shop by Category',
+        style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
+      ),),
       body: SafeArea(
         child: Obx(() {
           if (controller.isLoading.value) {
@@ -29,7 +34,6 @@ class CategoryPage extends GetView<CategoryController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const CategoryHeader(),
                 const SizedBox(height: 12),
                 CategoryGrid(categories: categories),
               ],

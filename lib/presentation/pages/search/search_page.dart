@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../config/routes/app_routes.dart';
 import '../../controllers/search/search_controller.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 import '../../widgets/search/search_result_card.dart';
 import '../../widgets/search/search_text_field.dart';
 
@@ -15,13 +16,11 @@ class SearchPage extends GetView<SearchController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Text(
           'Search',
           style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.tune, color: theme.colorScheme.onSurface),

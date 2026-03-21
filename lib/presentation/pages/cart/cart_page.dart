@@ -5,6 +5,7 @@ import '../../controllers/cart/cart_controller.dart';
 import '../../widgets/cart/cart_item_card.dart';
 import '../../widgets/cart/cart_total_card.dart';
 import '../../widgets/cart/checkout_button.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class CartPage extends GetView<CartController> {
   const CartPage({super.key});
@@ -15,15 +16,13 @@ class CartPage extends GetView<CartController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Obx(
           () => Text(
             'Cart (${controller.totalItems})',
             style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
           ),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
       ),
       body: SafeArea(
         child: Obx(

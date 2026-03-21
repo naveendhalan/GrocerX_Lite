@@ -6,6 +6,7 @@ import '../../widgets/checkout/checkout_address_card.dart';
 import '../../widgets/checkout/confirm_order_button.dart';
 import '../../widgets/checkout/order_summary_card.dart';
 import '../../widgets/checkout/payment_option_card.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class CheckoutPage extends GetView<CheckoutController> {
   const CheckoutPage({super.key});
@@ -16,13 +17,11 @@ class CheckoutPage extends GetView<CheckoutController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Text(
           'Checkout',
           style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

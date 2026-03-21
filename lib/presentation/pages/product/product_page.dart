@@ -8,6 +8,7 @@ import '../../controllers/product/product_controller.dart';
 import '../../widgets/product/product_grid.dart';
 import '../../widgets/product/product_header.dart';
 import '../../widgets/product/product_sort_filter_bar.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 /// Product listing page – Day 2 layout placeholder.
 ///
@@ -26,9 +27,7 @@ class ProductPage extends GetView<ProductController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
+      appBar: GrocerAppBar(
         title: Obx(
           () => Text(
             controller.pageTitle.value,

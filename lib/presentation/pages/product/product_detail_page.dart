@@ -10,6 +10,7 @@ import '../../widgets/product/product_detail_key_features.dart';
 import '../../widgets/product/product_detail_name_price.dart';
 import '../../widgets/product/product_detail_quantity_selector.dart';
 import '../../widgets/product/product_detail_related_products.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class ProductDetailPage extends GetView<ProductDetailController> {
   const ProductDetailPage({super.key});
@@ -20,6 +21,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
+      appBar: const GrocerAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

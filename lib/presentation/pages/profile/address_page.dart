@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../domain/entities/address_entity.dart';
 import '../../controllers/profile/profile_controller.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 import '../../widgets/profile/address_card.dart';
 
 class AddressPage extends GetView<ProfileController> {
@@ -14,13 +15,11 @@ class AddressPage extends GetView<ProfileController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Text(
           'Manage Addresses',
           style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.add, color: theme.colorScheme.primary),

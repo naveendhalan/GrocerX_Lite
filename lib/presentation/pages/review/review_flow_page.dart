@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/review/review_controller.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 import '../../widgets/review/image_picker_widget.dart';
 import '../../widgets/review/review_text_field.dart';
 import '../../widgets/review/star_rating.dart';
@@ -15,12 +16,11 @@ class ReviewFlowPage extends GetView<ReviewController> {
     final textController = TextEditingController(text: controller.reviewText.value);
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Obx(() {
           final s = controller.step.value;
           return Text('Write a Review - Step $s/4');
         }),
-        leading: IconButton(icon: const Icon(Icons.close), onPressed: () => Get.back()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

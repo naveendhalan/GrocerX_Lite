@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/orders/orders_controller.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 import '../../widgets/orders/order_card.dart';
 
 class OrdersPage extends GetView<OrdersController> {
@@ -11,7 +12,7 @@ class OrdersPage extends GetView<OrdersController> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Your Orders')),
+      appBar: const GrocerAppBar(title: const Text('Your Orders')),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());

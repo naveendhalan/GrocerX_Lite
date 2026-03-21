@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../controllers/wishlist/wishlist_controller.dart';
 import '../../widgets/wishlist/wishlist_item_card.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class WishlistPage extends GetView<WishlistController> {
   const WishlistPage({super.key});
@@ -13,15 +14,13 @@ class WishlistPage extends GetView<WishlistController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Obx(
           () => Text(
             'Wishlist (${controller.itemCount})',
             style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
           ),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
       ),
       body: SafeArea(
         child: Obx(

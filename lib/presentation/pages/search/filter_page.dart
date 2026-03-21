@@ -5,6 +5,7 @@ import '../../../domain/entities/filter_entity.dart';
 import '../../controllers/search/search_controller.dart';
 import '../../widgets/search/apply_filters_button.dart';
 import '../../widgets/search/filter_chip.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class FilterPage extends GetView<SearchController> {
   const FilterPage({super.key});
@@ -15,13 +16,11 @@ class FilterPage extends GetView<SearchController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: Text(
           'Filters',
           style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
         ),
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
         actions: [
           TextButton(
             onPressed: controller.clearFilters,

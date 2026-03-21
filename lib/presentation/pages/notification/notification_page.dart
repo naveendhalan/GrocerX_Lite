@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../presentation/controllers/notification/notification_controller.dart';
 import '../../widgets/notification/notification_card.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class NotificationPage extends GetView<NotificationController> {
   const NotificationPage({super.key});
@@ -12,7 +13,7 @@ class NotificationPage extends GetView<NotificationController> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         title: const Text("Notifications"),
         actions: [
           TextButton(

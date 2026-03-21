@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/auth/forgot_password_controller.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/auth/auth_text_field.dart';
 
@@ -14,14 +15,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.surface,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
-          onPressed: () => Get.back(),
-        ),
-      ),
+      appBar: const GrocerAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),

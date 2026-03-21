@@ -19,6 +19,7 @@ import '../../widgets/home/skeletons/banner_skeleton.dart';
 import '../../widgets/home/skeletons/category_skeleton.dart';
 import '../../widgets/home/skeletons/home_search_skeleton.dart';
 import '../../widgets/home/skeletons/product_grid_skeleton.dart';
+import '../../widgets/common/grocer_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
+      appBar: GrocerAppBar(
         leading: Builder(
           builder: (context) => IconButton(
             icon: Icon(Icons.menu, color: theme.colorScheme.onSurface),
@@ -174,7 +175,6 @@ class _HomePageState extends State<HomePage> {
             );
           }),
         ),
-        backgroundColor: theme.colorScheme.surface,
         elevation: 0,
         actions: [
           Obx(() {
